@@ -1,0 +1,26 @@
+<!--This is a base HTML-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo"></div>
+            <div class="menu">
+                <ul>
+                    {% for m in menu %}
+                        <li>
+                            <a href="{% url m.link_url %}">{{ m.link_title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %} {% endblock %}
+    {% block about %} {% endblock %}
+</body>
+</html>
