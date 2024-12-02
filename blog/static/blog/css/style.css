@@ -266,6 +266,10 @@ textarea {
   overflow: auto;
 }
 
+ul {
+    padding: 0;
+}
+
 /**
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
@@ -361,4 +365,83 @@ template {
 
 body {
  font-family: "m-regular", serif;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0px 16px;
+}
+
+.main_nav {
+    background: orangered;
+    margin-bottom: 24px;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+        .logo {
+            h1 {
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                }
+            }
+        }
+
+        .menu {
+            ul {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+
+                li {
+                    list-style-type: none;
+
+                    a {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.aside_and_main {
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+
+    aside {
+        width: 300px;
+        padding: 16px;
+        background: orangered;
+        color: #fff;
+
+        .categories {
+            li {
+                list-style-position: inside;
+                margin-bottom: 8px;
+
+                &.active_cat {
+                    color: greenyellow;
+                }
+                a {
+                    display: inline-block;
+                    text-decoration: none;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    main {
+        flex: 1;
+        border: 1px solid red;
+        padding: 16px;
+    }
 }

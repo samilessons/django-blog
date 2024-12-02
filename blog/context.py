@@ -2,10 +2,6 @@ def menu_context(request):
 	return {
 		"menu": [
 			{
-				"link_title": "Home",
-				"link_url": "index"
-			},
-			{
 				"link_title": "About Site",
 				"link_url": "about"
 			},
@@ -21,5 +17,5 @@ def menu_context(request):
 				"link_title": "Login",
 				"link_url": "login"
 			},
-		]
+		],
 	}

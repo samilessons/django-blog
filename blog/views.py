@@ -54,8 +54,9 @@ def index(request):
 		"title": "Home Page",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 		"posts": data_from_db,
+		"cat_selected": 0
 	}
-	return render(request, "blog/home.html", context=data)
+	return render(request, "blog/home.html", data)
 
 
 def about(request):
@@ -67,7 +68,14 @@ def show_more(request, post_id):
 
 
 def show_category(request, cat_id):
-	return render(request, "blog/category.html", {"title": f"Category: {cat_id}"})
+	return render(
+		request,
+		"blog/category.html",
+		{
+			"title": categories_from_db[cat_id - 1].get("name"),
+			"cat_selected": cat_id
+		},
+	)
 
 
 def add_post(request):

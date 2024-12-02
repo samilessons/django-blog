@@ -1,5 +1,7 @@
-{% for cat in cats %}
-    <li>
-        <a href="{% url 'category' cat.id %}">{{cat.name}}</a>
-    </li>
-{% endfor %}
+{% extends "base.html" %}
+
+{% block category %}
+    <div>
+        <h2>{{title}}</h2>
+    </div>
+{% endblock %}

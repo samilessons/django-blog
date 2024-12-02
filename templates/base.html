@@ -1,5 +1,7 @@
 {% load static %}
 {% load blog_tags %}
+
+<!--BASE-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +10,13 @@
     <link type="text/css" rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 </head>
 <body>
-    <nav>
+    <nav class="main_nav">
         <div class="container">
-            <div class="logo"></div>
+            <div class="logo">
+                <h1>
+                    <a href="{% url 'index' %}">Our Blog</a>
+                </h1>
+            </div>
             <div class="menu">
                 <ul>
                     {% for m in menu %}
@@ -23,9 +29,18 @@
         </div>
     </nav>
 
-    {% show_categories %}
-    {% block content %} {% endblock %}
-    {% block about %} {% endblock %}
+    <section class="aside_and_main container">
+        <aside>
+            <h2>Categories</h2>
+            {% show_categories cat_selected %}
+        </aside>
+        <main>
+            {% block category %}{% endblock %}
+        </main>
+    </section>
+
+<!--    {% block content %} {% endblock %}-->
+<!--    {% block about %} {% endblock %}-->
 
     <script src="{% static 'blog/js/script.js' %}"></script>
 </body>
