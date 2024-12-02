@@ -6,6 +6,7 @@
         <p>{{ description }}</p>
     </header>
 
+
     {% include "blog/includes/categories.html" only with title2="Hello World" %}
 
     <main>
@@ -15,7 +16,9 @@
                 {% if post.is_published %}
                     <li>
                         <h2>{{post.title}}</h2>
-                        <p>{{post.content}}</p>
+                        {% autoescape off %}
+                        <p>{{post.content|linebreaksbr|truncatewords:50}}</p>
+                        {% endautoescape %}
                         <a href="{% url 'posts' post.id %}"> Read More </a>
                         {% if not forloop.last %} <hr> {% endif %}
                     </li>

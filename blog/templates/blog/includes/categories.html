@@ -1,9 +1,10 @@
+{% load blog_tags %}
+
 <nav>
-    <a href="#"> Traveling </a>
-    <a href="#"> Sport </a>
-    <a href="#"> IT & Development </a>
-    <a href="#"> Cars </a>
-    <a href="#"> Fashion </a>
+{% get_categories as categories %}
+{% for cat in categories %}
+    <a href="{% url 'category' cat.id %}"> {{cat.name}} </a>
+{% endfor %}
 </nav>
 
 <p>{{ title }}</p>

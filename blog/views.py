@@ -28,12 +28,24 @@ data_from_db = [
 		"title": "Ameriabank Named Armenia’s Best Bank for Real Estate by Euromoney",
 		"is_published": True,
 		"content": """
-			Ameriabank has been recognized as Armenia’s best bank for real estate by an international financial publication
-			Euromoney, becoming the first-ever recipient of this award in Armenia. The Real Estate Awards honor excellence in
-			the commercial real estate sector, acknowledging not only financial success and client service, but also a
+			<span style="color: red"> Ameriabank </span> has been recognized as Armenia’s best bank for real estate by an international financial publication
+			Euromoney, becoming the first-ever recipient of this award in Armenia.
+			The Real Estate Awards honor excellence in
+			
+			the commercial real estate sector, acknowledging not only financial success and client service,
+			but also a
+			
 			commitment to improving the sector through technological advances and sustainability initiatives
 		"""
 	}
+]
+
+categories_from_db = [
+	{"id": 1, "name": "Traveling"},
+	{"id": 2, "name": "Sport"},
+	{"id": 3, "name": "IT & Development"},
+	{"id": 4, "name": "Cars"},
+	{"id": 5, "name": "Fashion"},
 ]
 
 
@@ -43,15 +55,19 @@ def index(request):
 		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 		"posts": data_from_db,
 	}
-	return render(request, "blog/index.html", context=data)
+	return render(request, "blog/home.html", context=data)
 
 
 def about(request):
 	return render(request, "blog/about.html", {"title": "About Page"})
 
 
-def post_more(request, post_id):
+def show_more(request, post_id):
 	return render(request, "blog/read-more.html", {"title": "Read More"})
+
+
+def show_category(request, cat_id):
+	return render(request, "blog/category.html", {"title": f"Category: {cat_id}"})
 
 
 def add_post(request):
