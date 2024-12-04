@@ -53,8 +53,7 @@ def index(request):
 	data = {
 		"title": "Home Page",
 		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-		"posts": data_from_db,
-		"cat_selected": 0
+		"posts": data_from_db
 	}
 	return render(request, "blog/home.html", data)
 
