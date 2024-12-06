@@ -32,15 +32,22 @@
     <section class="aside_and_main container">
         <aside>
             <h2>Categories</h2>
+            <ul class="categories">
+                {% if cat_selected %}
+                    <li>
+                        <a class="category_item" href="{% url 'index' %}">All</a>
+                    </li>
+                {% else %}
+                    <li class="active_cat">All</li>
+                {% endif %}
+            </ul>
             {% show_categories cat_selected %}
         </aside>
         <main>
-            {% block category %}{% endblock %}
+            {% block article %} {% endblock %}
+            {% block latest_articles %} {% endblock %}
         </main>
     </section>
-
-<!--    {% block content %} {% endblock %}-->
-<!--    {% block about %} {% endblock %}-->
 
     <script src="{% static 'blog/js/script.js' %}"></script>
 </body>

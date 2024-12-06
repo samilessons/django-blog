@@ -1,44 +1,7 @@
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.http import  HttpResponseNotFound
+from django.shortcuts import render, get_object_or_404
 
-data_from_db = [
-	{
-		"id": 1,
-		"title": "CSTO should not have fought for Yerevan in Karabakh, Putin says",
-		"is_published": True,
-		"content": """
-			The Collective Security Treaty Organization (CSTO) should not have fought for Yerevan in Karabakh; in this case,
-			there was no external aggression against Armenia, Russian President Vladimir Putin said, TASS reports. Also,
-			the Russian president did not rule out that Armenia will return to full-time work within the CSTO.
-			He added that Armenia has not yet announced its withdrawal from the CSTO and supports all the
-			documents of the summit of this organization.
-		"""
-	},
-	{
-		"id": 2,
-		"title": "US dollar still rising in Armenia",
-		"is_published": False,
-		"content": """
-			The American dollar’s (USD) exchange rate against the Armenian dram (AMD) comprised AMD 392.97/$1 in Armenia
-			on Thursday;
-		"""
-	},
-	{
-		"id": 3,
-		"title": "Ameriabank Named Armenia’s Best Bank for Real Estate by Euromoney",
-		"is_published": True,
-		"content": """
-			<span style="color: red"> Ameriabank </span> has been recognized as Armenia’s best bank for real estate by an international financial publication
-			Euromoney, becoming the first-ever recipient of this award in Armenia.
-			The Real Estate Awards honor excellence in
-			
-			the commercial real estate sector, acknowledging not only financial success and client service,
-			but also a
-			
-			commitment to improving the sector through technological advances and sustainability initiatives
-		"""
-	}
-]
+from .models import Article
 
 categories_from_db = [
 	{"id": 1, "name": "Traveling"},
@@ -50,20 +13,25 @@ categories_from_db = [
 
 
 def index(request):
-	data = {
-		"title": "Home Page",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-		"posts": data_from_db
-	}
-	return render(request, "blog/home.html", data)
+	articles = Article.objects.all()
+	return render(request, "blog/home.html", {"articles": articles})
 
 
 def about(request):
 	return render(request, "blog/about.html", {"title": "About Page"})
 
 
-def show_more(request, post_id):
-	return render(request, "blog/read-more.html", {"title": "Read More"})
+def show_article(request, article_slug):
+	article = get_object_or_404(Article, slug=article_slug)
+	
+	data = {
+		"title": article.title,
+		"content": article.content,
+		"time_create": article.time_create,
+		"time_update": article.time_update,
+		"is_published": article.is_published
+	}
+	return render(request, "blog/show-article.html", data)
 
 
 def show_category(request, cat_id):

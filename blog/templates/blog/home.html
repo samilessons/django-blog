@@ -1,29 +1,19 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <header>
-        <h1>{{ title }}</h1>
-        <p>{{ description }}</p>
-    </header>
-    <main>
+{% block latest_articles %}
+    <div class="latest_articles__block">
+        <h2>Our Latest Articles</h2>
 
-        <h2>Our Latest Posts</h2>
-        <ul>
-            {% for post in posts %}
-                {% if post.is_published %}
-                    <li>
-                        <h2>{{post.title}}</h2>
-                        {% autoescape off %}
-                        <p>{{post.content|linebreaksbr|truncatewords:50}}</p>
-                        {% endautoescape %}
-                        <a href="{% url 'posts' post.id %}"> Read More </a>
-                        {% if not forloop.last %} <hr> {% endif %}
-                    </li>
+        <div class="latest_articles">
+            {% for article in articles%}
+                {% if article.is_published %}
+                    <div class="latest_articles__item">
+                        <h3>{{article.title}}</h3>
+                        <p>{{article.content|truncatewords:10}}</p>
+                        <a href="{{ article.get_absolute_url }}">read more</a>
+                    </div>
                 {% endif %}
-                {% empty %}
-                    <li>Sorry, no Posts</li>
             {% endfor %}
-        </ul>
-    </main>
+        </div>
+    </div>
 {% endblock %}
-

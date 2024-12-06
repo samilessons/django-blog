@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block article %}
+    <div>
+        <article>
+            <h1>{{title}}</h1>
+            {% if image %}
+                <div>
+                    <img src={{image.url}} alt={{title}}>
+                </div>
+            {% endif %}
+            <p>{{content|linebreaksbr}}</p>
+
+            <div>
+                <p>Published: {{time_create}}</p>
+                <p>Updated: {{time_update}}</p>
+            </div>
+        </article>
+    </div>
+{% endblock %}
