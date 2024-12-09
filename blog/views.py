@@ -13,7 +13,8 @@ categories_from_db = [
 
 
 def index(request):
-	articles = Article.objects.all()
+	# articles = Article.objects.filter(is_published=1)
+	articles = Article.published.all()
 	return render(request, "blog/home.html", {"articles": articles})
 
 
