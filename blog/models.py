@@ -18,7 +18,7 @@ class Article(models.Model):
 	time_create = models.DateTimeField(auto_now_add=True)
 	time_update = models.DateTimeField(auto_now=True)
 	is_published = models.BooleanField(choices=Status.choices, default=Status.PUBLISHED)
-	category = models.ForeignKey("Category", on_delete=models.CASCADE)
+	category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="items")  # article_set
 	
 	objects = models.Manager()
 	published = ArticleManager()

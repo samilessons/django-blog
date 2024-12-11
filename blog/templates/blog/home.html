@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block latest_articles %}
-    <div class="latest_articles__block">
+    <div class="articles__with__block__title">
         <h2>Our Latest Articles</h2>
 
         <div class="latest_articles">
-            {% for article in articles%}
+            {% for article in articles %}
                 <div class="latest_articles__item">
                     <h3>{{article.title}}</h3>
                     <p>{{article.content|linebreaksbr|truncatewords:30}}</p>

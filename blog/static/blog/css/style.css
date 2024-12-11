@@ -445,13 +445,13 @@ body {
         flex: 1;
         padding: 16px;
 
-        .latest_articles__block {
-            .latest_articles {
+        .articles__with__block__title  {
+            .latest_articles, .category__items {
                 display: flex;
                 gap: 16px;
                 flex-wrap: wrap;
 
-                .latest_articles__item {
+                .latest_articles__item, .category__items__item{
                     flex: 1 1 240px;
                     background: #eee;
                     padding: 16px;

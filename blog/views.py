@@ -1,15 +1,7 @@
-from django.http import  HttpResponseNotFound
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
 
-from .models import Article
-
-categories_from_db = [
-	{"id": 1, "name": "Traveling"},
-	{"id": 2, "name": "Sport"},
-	{"id": 3, "name": "IT & Development"},
-	{"id": 4, "name": "Cars"},
-	{"id": 5, "name": "Fashion"},
-]
+from .models import Article, Category
 
 
 def index(request):
@@ -22,9 +14,21 @@ def about(request):
 	return render(request, "blog/about.html", {"title": "About Page"})
 
 
+def show_category(request, cat_slug):
+	category = get_object_or_404(Category, slug=cat_slug)
+	data = {
+		"name": category.name,
+		"slug": category.slug,
+		"id": category.id,
+		"articles": category.items.all(),
+		"cat_selected": category.id
+	}
+	return render(request, "blog/category.html", data)
+
+
 def show_article(request, article_slug):
 	article = get_object_or_404(Article, slug=article_slug)
-	
+
 	data = {
 		"title": article.title,
 		"content": article.content,
@@ -33,17 +37,6 @@ def show_article(request, article_slug):
 		"is_published": article.is_published
 	}
 	return render(request, "blog/show-article.html", data)
-
-
-def show_category(request, cat_id):
-	return render(
-		request,
-		"blog/category.html",
-		{
-			"title": categories_from_db[cat_id - 1].get("name"),
-			"cat_selected": cat_id
-		},
-	)
 
 
 def add_post(request):

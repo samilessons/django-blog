@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
 {% block category %}
-    <div>
-        <h2>{{title}}</h2>
-        <p>{{ cat_selected }}</p>
+    <div class="articles__with__block__title">
+        <h2>{{name}}</h2>
+
+        <div class="category__items">
+            {% for item in articles %}
+                <div class="category__items__item">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.content|linebreaksbr|truncatewords:30}}</p>
+                    <a href="{{ item.get_absolute_url }}">read more</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
