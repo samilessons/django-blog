@@ -8,6 +8,10 @@
             {% for item in articles %}
                 <div class="category__items__item">
                     <h3>{{item.title}}</h3>
+                    <div class="item__cat__date">
+                        <h5>{{item.category}}</h5>
+                        <p>{{item.time_create|date:"d/m/Y H:i:s"}}</p>
+                    </div>
                     <p>{{item.content|linebreaksbr|truncatewords:30}}</p>
                     <a href="{{ item.get_absolute_url }}">read more</a>
                 </div>

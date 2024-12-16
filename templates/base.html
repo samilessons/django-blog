@@ -31,22 +31,14 @@
 
     <section class="aside_and_main container">
         <aside>
-            <h2>Categories</h2>
-<!--            <ul class="categories">-->
-<!--                {% if cat_selected %}-->
-<!--                    <li>-->
-<!--                        <a class="category_item" href="{% url 'index' %}">All</a>-->
-<!--                    </li>-->
-<!--                {% else %}-->
-<!--                    <li class="active_cat">All</li>-->
-<!--                {% endif %}-->
-<!--            </ul>-->
             {% show_categories cat_selected %}
+            {% show_tags %}
         </aside>
         <main>
             {% block article %} {% endblock %}
             {% block latest_articles %} {% endblock %}
             {% block category %} {% endblock %}
+            {% block tags %} {% endblock %}
         </main>
     </section>
 

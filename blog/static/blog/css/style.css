@@ -413,6 +413,7 @@ body {
 
 .aside_and_main {
     display: flex;
+    align-items: flex-start;
     gap: 32px;
     justify-content: space-between;
 
@@ -422,9 +423,10 @@ body {
         background: orangered;
         color: #fff;
 
-        .categories {
+        .categories, .tags {
             margin-bottom: 0px;
             margin-top: 0px;
+
             li {
                 list-style-position: inside;
                 margin-bottom: 8px;
@@ -445,6 +447,15 @@ body {
         flex: 1;
         padding: 16px;
 
+        .tags_wrapper {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+
+            h5 {
+                margin: 0px;
+            }
+        }
         .articles__with__block__title  {
             .latest_articles, .category__items {
                 display: flex;
@@ -456,6 +467,29 @@ body {
                     background: #eee;
                     padding: 16px;
                     border-radius: 8px;
+
+                    h3, p {
+                        margin: 8px 0px;
+                    }
+
+                    p {
+                        line-height: 24px;
+                    }
+
+                    .item__cat__date {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 16px;
+
+                        p {
+                            font-size: 12px;
+                        }
+
+                        h5, p {
+                            margin: 8px 0px;
+                        }
+                    }
                 }
             }
         }

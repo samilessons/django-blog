@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block latest_articles %}
+{% block tags %}
     <div class="articles__with__block__title">
-        <h2>Our Latest Articles</h2>
+        <h2>{{title}}</h2>
 
-        <div class="latest_articles">
+        <div class="category__items">
             {% for item in articles %}
-                <div class="latest_articles__item">
+                <div class="category__items__item">
                     <h3>{{item.title}}</h3>
                     <div class="item__cat__date">
                         <h5>{{item.category}}</h5>

@@ -4,16 +4,27 @@
     <div>
         <article>
             <h1>{{title}}</h1>
+            {% if tags %}
+                <div class="tags_wrapper">
+                    <h5>Tag:</h5>
+                    {% for tag in tags %}
+                        <a href="{{tag.get_absolute_url}}">
+                            {{tag}}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             {% if image %}
                 <div>
                     <img src={{image.url}} alt={{title}}>
                 </div>
             {% endif %}
-            <p>{{content|linebreaksbr}}</p>
+            <p>{{content|linebreaks}}</p>
 
             <div>
-                <p>Published: {{time_create}}</p>
-                <p>Updated: {{time_update}}</p>
+                <p>Published: {{time_create|date:"d/m/Y H:i:s"}}</p>
+                <p>Updated: {{time_update|date:"d/m/Y H:i:s"}}</p>
             </div>
         </article>
     </div>
