@@ -7,7 +7,9 @@
         <div class="latest_articles">
             {% for item in articles %}
                 <div class="latest_articles__item">
-                    <h3>{{item.title}}</h3>
+                    <h3>
+                        <a href="{{ item.get_absolute_url }}">{{item.title}}</a>
+                    </h3>
                     <div class="item__cat__date">
                         <h5>{{item.category}}</h5>
                         <p>{{item.time_create|date:"d/m/Y H:i:s"}}</p>

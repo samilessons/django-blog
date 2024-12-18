@@ -364,7 +364,7 @@ template {
 }
 
 body {
- font-family: "m-regular", serif;
+ font-family: "m-regular", arial, serif;
 }
 
 .container {
