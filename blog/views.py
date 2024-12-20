@@ -7,7 +7,7 @@ from .models import Article, Category, ArticleTags
 def index(request):
 	# articles = Article.objects.filter(is_published=1)
 	articles = Article.published.all()
-	return render(request, "blog/home.html", {"articles": articles})
+	return render(request, "blog/index.html", {"articles": articles})
 
 
 def about(request):
