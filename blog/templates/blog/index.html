@@ -8,7 +8,7 @@
             {% for item in articles %}
                 <div class="latest_articles__item">
                     <h3>
-                        <a href="{{ item.get_absolute_url }}">{{item.title}}</a>
+                        <a href="{{ item.get_absolute_url }}">{{item.title|truncatewords:10}}</a>
                     </h3>
                     <div class="item__cat__date">
                         <h5>{{item.category}}</h5>
