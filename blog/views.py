@@ -1,7 +1,8 @@
 from django.http import HttpResponseNotFound
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Article, Category, ArticleTags
+from .forms import AddPostForm
 
 
 def index(request):
@@ -54,7 +55,22 @@ def show_tags(request, tag_slug):
 
 
 def add_post(request):
-	return render(request, "blog/add-post.html", {"title": "Add Post"})
+	if request.method == "POST":
+		form = AddPostForm(request.POST)
+		if form.is_valid():
+			try:
+				Article.objects.create(**form.cleaned_data)
+				return redirect("index")
+			except Exception as error:
+				form.add_error(None, error)
+	else:
+		form = AddPostForm()
+	
+	data = {
+		"title": "Add Post",
+		"form": form
+	}
+	return render(request, "blog/add-post.html", data)
 
 
 def contacts(request):

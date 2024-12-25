@@ -35,6 +35,7 @@
             {% show_tags %}
         </aside>
         <main>
+            {% block content_header %}{% endblock %}
             {% block article %} {% endblock %}
             {% block latest_articles %} {% endblock %}
             {% block category %} {% endblock %}

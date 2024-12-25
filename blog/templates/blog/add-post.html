@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <header>
+{% block content_header %}
+    <div>
         <h1>{{title}}</h1>
-    </header>
+        <p>In this page You can add new Article.</p>
+
+        <form class="form" method="post">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit">SEND</button>
+        </form>
+
+<!--        <form class="form" action="" method="POST">-->
+<!--            {% csrf_token %}-->
+<!--            <input type="text" name="first_name" placeholder="First Name">-->
+<!--            <input type="text" name="last_name" placeholder="Last Name">-->
+<!--            <input type="email" name="email" placeholder="Email">-->
+<!--            <input type="tel" name="phone_number" placeholder="Phone Number">-->
+<!--            <button type="submit">SEND</button>-->
+<!--        </form>-->
+    </div>
 {% endblock %}
