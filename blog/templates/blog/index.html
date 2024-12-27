@@ -10,6 +10,15 @@
                     <h3>
                         <a href="{{ item.get_absolute_url }}">{{item.title|truncatewords:10}}</a>
                     </h3>
+                    {% if item.photo %}
+                        <div style="max-width: 350px; overflow: hidden;">
+                            <img
+                                style="object-fit: cover; object-position: center center; width: 100%; height: 100%"
+                                src="{{item.photo.url}}"
+                                alt="{{item.title}}"
+                            >
+                        </div>
+                    {% endif %}
                     <div class="item__cat__date">
                         <h5>{{item.category}}</h5>
                         <p>{{item.time_create|date:"d/m/Y H:i:s"}}</p>

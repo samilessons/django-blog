@@ -1,5 +1,6 @@
 from django.contrib import admin, messages
 from .models import Article, Category, Author
+from django.utils.safestring import mark_safe
 
 
 class AuthorFilter(admin.SimpleListFilter):
@@ -31,12 +32,12 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    # exclude = ["adv"]
-    # fields = ["slug", "title", "content"]
-    # readonly_fields = ["slug"]
+    # fields = ["id", "title", "slug",
+    #                 "is_published", "category",  "author", "photo"]
+    readonly_fields = ["article_photo"]
     prepopulated_fields = {"slug": ("title", )}
     list_display = ["id", "title", "slug",
-                    "is_published", "category", "brief_info", "author"]
+                    "is_published", "category", "brief_info", "author", "article_photo"]
     list_display_links = ["id", "title"]
     list_editable = ["is_published"]
     list_per_page = 25
@@ -46,7 +47,14 @@ class ArticleAdmin(admin.ModelAdmin):
     search_help_text = "You can search only with title or content"
     list_filter = [AuthorFilter, "category__name", "is_published"]
     filter_horizontal = ["tags"]
-
+    
+    @admin.display(description="Photo")
+    def article_photo(self, article: Article):
+        if article.photo:
+            return mark_safe(f"<img src='{article.photo.url}' width=50>")
+        else:
+            return "Նկար չկա"
+        
     @admin.display(description="Short Info", ordering="content")
     def brief_info(self, article: Article):
         return f"Description {len(article.content)} symbols."

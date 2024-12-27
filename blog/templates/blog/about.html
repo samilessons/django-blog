@@ -2,4 +2,11 @@
 
 {% block content_header %}
     <h1>{{title}}</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <div>
+            <button type="submit">Վերբեռնել</button>
+        </div>
+    </form>
 {% endblock %}
