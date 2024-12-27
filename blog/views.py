@@ -6,80 +6,80 @@ from .forms import AddPostForm
 
 
 def index(request):
-	# articles = Article.objects.filter(is_published=1)
-	articles = Article.published.all()
-	return render(request, "blog/index.html", {"articles": articles})
+    # articles = Article.objects.filter(is_published=1)
+    articles = Article.published.all()
+    return render(request, "blog/index.html", {"articles": articles})
 
 
 def about(request):
-	return render(request, "blog/about.html", {"title": "About Page"})
+    return render(request, "blog/about.html", {"title": "About Page"})
 
 
 def show_category(request, cat_slug):
-	category = get_object_or_404(Category, slug=cat_slug)
-	articles = Article.published.filter(category_id=category.pk)
-	data = {
-		"name": category.name,
-		"slug": category.slug,
-		"id": category.id,
-		"articles": articles,
-		"cat_selected": category.id
-	}
-	return render(request, "blog/category.html", data)
+    category = get_object_or_404(Category, slug=cat_slug)
+    articles = Article.published.filter(category_id=category.pk)
+    data = {
+        "name": category.name,
+        "slug": category.slug,
+        "id": category.id,
+        "articles": articles,
+        "cat_selected": category.id
+    }
+    return render(request, "blog/category.html", data)
 
 
 def show_article(request, article_slug):
-	article = get_object_or_404(Article, slug=article_slug)
-	
-	data = {
-		"title": article.title,
-		"content": article.content,
-		"time_create": article.time_create,
-		"time_update": article.time_update,
-		"is_published": article.is_published,
-		"tags": article.tags.all()
-	}
-	return render(request, "blog/show-article.html", data)
+    article = get_object_or_404(Article, slug=article_slug)
+
+    data = {
+        "title": article.title,
+        "content": article.content,
+        "time_create": article.time_create,
+        "time_update": article.time_update,
+        "is_published": article.is_published,
+        "tags": article.tags.all()
+    }
+    return render(request, "blog/show-article.html", data)
 
 
 def show_tags(request, tag_slug):
-	tag = get_object_or_404(ArticleTags, slug=tag_slug)
-	articles = tag.tags.filter(is_published=Article.Status.PUBLISHED)
-	
-	data = {
-		"title": f"Tag: {tag.tag}",
-		"articles": articles,
-	}
-	
-	return render(request, "blog/show-tags.html", data)
+    tag = get_object_or_404(ArticleTags, slug=tag_slug)
+    articles = tag.tags.filter(is_published=Article.Status.PUBLISHED)
+
+    data = {
+        "title": f"Tag: {tag.tag}",
+        "articles": articles,
+    }
+
+    return render(request, "blog/show-tags.html", data)
 
 
 def add_post(request):
-	if request.method == "POST":
-		form = AddPostForm(request.POST)
-		if form.is_valid():
-			try:
-				Article.objects.create(**form.cleaned_data)
-				return redirect("index")
-			except Exception as error:
-				form.add_error(None, error)
-	else:
-		form = AddPostForm()
-	
-	data = {
-		"title": "Add Post",
-		"form": form
-	}
-	return render(request, "blog/add-post.html", data)
+    if request.method == "POST":
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            try:
+                Article.objects.create(**form.cleaned_data)
+                return redirect("index")
+            except Exception as error:
+                form.add_error(None, error)
+    else:
+        form = AddPostForm()
+
+    data = {
+        "title": "Ավելացնել նոր նյութ",
+        "form": form
+    }
+    return render(request, "blog/add-post.html", data)
 
 
 def contacts(request):
-	return render(request, "blog/contacts.html", {"title": "Contacts"})
+    return render(request, "blog/contacts.html", {"title": "Contacts"})
 
 
 def login(request):
-	return render(request, "blog/login.html", {"title": "Login"})
+    return render(request, "blog/login.html", {"title": "Login"})
 
 
 def page_not_found(request, exception):
-	return HttpResponseNotFound(f"<h1> Page Not Found 404 </h1>")
+    return HttpResponseNotFound(f"<h1> Page Not Found 404 </h1>")

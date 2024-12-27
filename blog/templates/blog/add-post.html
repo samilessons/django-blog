@@ -3,12 +3,12 @@
 {% block content_header %}
     <div>
         <h1>{{title}}</h1>
-        <p>In this page You can add new Article.</p>
+        <p>Այս էջում Դուք կարող եք ավելացնել նոր նյութ</p>
 
         <form class="form" method="post">
             {% csrf_token %}
             {{ form.as_div }}
-            <button type="submit">SEND</button>
+            <button type="submit">ՈՒՂԱՐԿԵԼ</button>
         </form>
 
 <!--        <form class="form" action="" method="POST">-->
